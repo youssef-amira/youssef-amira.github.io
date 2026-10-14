@@ -60,3 +60,11 @@ html{scroll-behavior:smooth}body{margin:0;background:var(--background);color:var
 @media(min-width:1100px){.film-stage video{max-width:570px}.film-stage:before,.film-stage:after{content:'';position:absolute;top:0;bottom:0;width:calc((100% - 570px)/2);background:var(--secondary);z-index:1}.film-stage:before{left:0}.film-stage:after{right:0}.film-copy{z-index:2}.film-controls{right:calc(50% - 255px)}}
 @media(max-width:700px){body{font-size:18px}.site-header{height:65px;padding:0 22px}.header-center{display:none}.wordmark{font-size:25px}.portal{height:calc(100svh - 117px);min-height:590px;max-height:850px}.door-image{object-fit:cover}.portal-copy{padding-top:60px}.portal-copy .arabic-top{font-size:18px;margin-top:18px}.couple-names{font-size:52px}.couple-names .and{font-size:24px;margin:0 8px}.english-names{font-size:17px}.opening-action{margin-bottom:40px}.seal-button{width:79px!important;height:79px!important}.seal-inner{width:63px;height:63px}.opening-label{font-size:17px}.portal-bottom{left:18px;right:18px;font-size:12px}.date-ribbon{height:52px;gap:15px;font-size:14px}.date-ribbon .latin{font-size:9px}.invitation-body{padding:0 25px}.section{padding:50px 0}.section h2,.rsvp-section h2{font-size:31px}.invite-text{font-size:20px}.verse{font-size:20px}.count-unit b{font-size:41px}.event-layout{grid-template-columns:1fr;gap:0}.event-layout .section:first-child{border-bottom:1px solid var(--border)}.schedule{max-width:420px;margin-inline:auto}.film-copy{bottom:70px}.film-copy .couple-names{font-size:55px}.film-copy p:last-child{font-size:17px}.footer-bottom{font-size:11px;gap:15px}.closing h2{font-size:26px}.rsvp-section{padding:45px 20px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}.portal.opening .door-leaf{opacity:0}}
+
+/* ===== Music button (added) ===== */
+.music-button{position:fixed;left:20px;bottom:20px;z-index:40;box-shadow:0 6px 16px var(--shadow)}
+.music-button[hidden]{display:none}
+.music-button .mute-line{display:none}
+.music-button.off .mute-line{display:block}
+.music-button:not(.off){animation:musicPulse 2.4s ease-in-out infinite}
+@keyframes musicPulse{0%,100%{box-shadow:0 6px 16px var(--shadow),0 0 0 0 oklch(.65 .081 79 / .35)}50%{box-shadow:0 6px 16px var(--shadow),0 0 0 8px oklch(.65 .081 79 / 0)}}

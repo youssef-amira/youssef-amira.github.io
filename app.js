@@ -25,9 +25,21 @@
   video.addEventListener('play', function () { setPlaying(true); });
   video.addEventListener('pause', function () { setPlaying(false); });
 
+  /* ---------- الموسيقى (ضع الملف في assets/music.mp3) ---------- */
+  var audio = $('audio'), musicBtn = $('musicBtn');
+  function startMusic() {
+    var r = audio.play();
+    if (r && r.then) r.then(function () { musicBtn.hidden = false; musicBtn.classList.remove('off'); musicBtn.setAttribute('aria-label', 'إيقاف الموسيقى'); }, function () { musicBtn.hidden = true; });
+  }
+  musicBtn.addEventListener('click', function () {
+    if (audio.paused) { audio.play(); musicBtn.classList.remove('off'); musicBtn.setAttribute('aria-label', 'إيقاف الموسيقى'); }
+    else { audio.pause(); musicBtn.classList.add('off'); musicBtn.setAttribute('aria-label', 'تشغيل الموسيقى'); }
+  });
+
   openBtn.addEventListener('click', function () {
     if (phase !== 'closed') return;
     setPhase('opening');
+    startMusic();
     var rm = reduced();
     if (!rm) play();
     clearTimeout(timer);
@@ -42,6 +54,7 @@
   $('replayBtn').addEventListener('click', function () {
     clearTimeout(timer);
     video.pause(); setPlaying(false); setPhase('closed');
+    audio.pause(); audio.currentTime = 0; musicBtn.hidden = true;
     scrollTo({ top: 0, behavior: 'smooth' });
     setTimeout(function () { openBtn.focus({ preventScroll: true }); }, 100);
   });
